@@ -17,24 +17,32 @@ int myTexture(char * filename)
     return id;
 }
 
-#include "glm.h" ///step02-1 把 source.zip裡的 glm.h 放在同目錄中
-///step03-1也要把step02-1的 glm.h也準備好
-///glm.cpp 也要加到你的程式目錄裡
-GLMmodel * pmodel = NULL; ///step02-1 模型的指標,一開始NULL空的
+#include <GL/glut.h>
+#include "glm.h"///把source.zip裡的glm.h放在同目錄
 float angle=0;
+GLMmodel * pmodel =NULL;
+GLMmodel * phand =NULL;
 void display()
 {
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    ///step03-1執行前,確認Gundam.obj Gundam.mtl 都在freeglut的bin
-    if(pmodel==NULL){ ///第一次會進來 step02-1
-        pmodel = glmReadOBJ("lefthand.obj");///檔名照你的檔名 step02-1
-        glmUnitize(pmodel);///step02-2 縮放成Unit單位大小(-1..+1)
-        glmFacetNormals(pmodel);///step03-1
-        glmVertexNormals(pmodel, 90);///step03-1
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    if(pmodel==NULL){
+        pmodel = glmReadOBJ("Gundam.obj");
+        glmUnitize(pmodel);
+        glmFacetNormals(pmodel);
+        glmVertexNormals(pmodel, 90);
+
     }
+    if(phand==NULL){
+        phand = glmReadOBJ("left_hand.obj");
+        glmUnitize(phand);
+        glmFacetNormals(phand);
+        glmVertexNormals(phand, 90);
+    }
+    ///glutSoildSpere(0.1, 30, 30);
     glPushMatrix();
-        glRotatef(angle, 0,1,0);
-        glmDraw(pmodel, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE); ///step02-1
+        glRotatef(angle, 0, 1, 0);
+        glTranslatef(0, -0.1, 0);
+    glmDraw(phand, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE);
     glPopMatrix();
     ///glutSolidTeapot( 0.3 );
     angle++;
@@ -42,12 +50,14 @@ void display()
 }
 int main(int argc, char**argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
-    glutCreateWindow("week08");
-    myTexture("Diffuse.jpg");///step03-2圖檔也是放freeglut的bin
-    glEnable(GL_DEPTH_TEST);///下週再教3D的glEnable(GL_DEPTH_TEST);
+    glutInit( &argc, argv );
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow("week10");
+
+    myTexture("Diffuse.jpg");
+    glEnable(GL_DEPTH_TEST);
     glutDisplayFunc(display);
     glutIdleFunc(display);
+
     glutMainLoop();
 }
