@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1514140588 source:c:\users\administrator\desktop\week02-1_glut_first\main.cpp
+1514140588 source:c:\users\user\onedrive\文件\桌面\作業\電腦圖學\week02-1_glut_first\main.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>
 
-1426320928 c:\users\administrator\desktop\freeglut\include\gl\glut.h
+1676969824 c:\users\user\onedrive\文件\桌面\作業\電腦圖學\freeglut-mingw-3.0.0-1.mp\freeglut\include\gl\glut.h
 	"freeglut_std.h"
 
-1426320928 c:\users\administrator\desktop\freeglut\include\gl\freeglut_std.h
+1676969824 c:\users\user\onedrive\文件\桌面\作業\電腦圖學\freeglut-mingw-3.0.0-1.mp\freeglut\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>

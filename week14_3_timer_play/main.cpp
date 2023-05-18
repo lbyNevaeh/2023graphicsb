@@ -1,14 +1,29 @@
 #include <GL/glut.h>
-float angle = 0;
+float angle = 0,newAngle = 0, oldAngle = 0;
+float oldX = 0;
 void timer(int t)
 {
-    glutTimerFunc(33, timer, t+1);
-    angle += 3;
+    if(t<100)glutTimerFunc(33, timer, t+1);
+    float alpha = t/100.0;
+    angle = alpha*newAngle + (1-alpha)*oldAngle;
     glutPostRedisplay();
 }
 void keyboard(unsigned char key, int x, int y)
 {
 	glutTimerFunc(0, timer, 0);
+}
+void mouse(int button, int state, int x, int y)
+{
+    if(state==GLUT_DOWN)oldAngle = angle;
+    if(state==GLUT_UP)newAngle = angle;
+    oldX = x;
+    glutPostRedisplay();
+}
+void motion(int x, int y)
+{
+    angle += x-oldX;
+    oldX = x;
+    glutPostRedisplay();
 }
 void display()
 {
@@ -25,6 +40,8 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);///設定 GLUT 的顯示模式
 	glutCreateWindow("week14");
 
+	glutMouseFunc(mouse);
+	glutMotionFunc(motion);
 	glutKeyboardFunc(keyboard);
 	///glutTimerFunc(3000, timer, 0);
 	glutDisplayFunc(display); ///顯示的函式 display()
