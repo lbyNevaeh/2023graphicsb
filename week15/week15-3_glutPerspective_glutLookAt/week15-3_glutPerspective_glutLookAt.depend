@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1685001748 source:c:\users\administrator\2023graphicsb\week15\week15-3_glutperspective_glutlookat\main.cpp
+1685003719 source:c:\users\administrator\2023graphicsb\week15\week15-3_glutperspective_glutlookat\main.cpp
 	<GL/glut.h>
 
-1684995748 c:\users\administrator\2023graphicsb\final_project\freeglut\include\gl\glut.h
+1685003464 c:\users\administrator\2023graphicsb\final_project\freeglut\include\gl\glut.h
 	"freeglut_std.h"
 
-1684995748 c:\users\administrator\2023graphicsb\final_project\freeglut\include\gl\freeglut_std.h
+1685003464 c:\users\administrator\2023graphicsb\final_project\freeglut\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>
